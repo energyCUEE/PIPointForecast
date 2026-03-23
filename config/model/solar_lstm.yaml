@@ -1,0 +1,9 @@
+_target_: model.solar_lstm_net.SolarPointPI_LSTMNet
+
+num_lag_features: ${run.n_lag_variate}
+num_future_features: ${run.n_future_variate}
+num_lstm_cells: 1
+lstm_hidden_size: ${run.hidden_dim}
+submodel_hidden_size: [100, 100]
+predicted_step: 16
+batchnorm: false

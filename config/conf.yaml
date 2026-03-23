@@ -1,0 +1,38 @@
+defaults:
+  - _self_
+  - model: lstm_encdec
+  - trainer: v1
+  - optimizer: adamw
+  - scheduler: cos_ann
+
+# Experiment Parameters
+data_path: "data/chronos_data_paths_nonan_allfulldt_numsteps_16_numlags_192_df_file.pkl"
+
+model_save_path: "./save_model"
+comment: "" # Add custom comments to the run name
+debug: false
+
+# Shared Run Hyperparameters
+run:
+  ds_type: "cache_piraw"
+
+  chronos_future: false
+
+  batch_size: 32768
+  norm_grad: false
+  max_epochs: 1500
+  log_step: 50
+  lr: 3e-4
+  lr_warmup: true
+  lr_warmup_epochs: 15
+
+  # Lag window override (null = use all lag from data file)
+  num_lag: null
+
+  # Model Dimensions (Shared)
+  d_model: 768
+  n_lag_variate: 3
+  n_future_variate: 3
+
+  # Hidden dimensions
+  hidden_dim: 64

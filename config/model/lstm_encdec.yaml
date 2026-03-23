@@ -1,0 +1,9 @@
+_target_: model.lstm_encdec.LSTMEncoderDecoder
+
+num_lag_vars: ${run.n_lag_variate}
+num_future_vars: ${run.n_future_variate}
+num_ahead: 16
+h_dim: ${run.hidden_dim}
+num_enc_layers: 2
+num_dec_layers: 2
+dropout: 0.1

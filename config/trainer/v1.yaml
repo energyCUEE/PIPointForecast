@@ -1,0 +1,10 @@
+_target_: utils.trainer.MGDA_PointPI_Trainer
+
+dbg_mode: ${debug}
+log_step: ${run.log_step}
+set_patience: 200
+model_save_path: ${model_save_path}
+batch_size: ${run.batch_size}
+num_lag: ${run.num_lag}
+num_epochs: ${run.max_epochs}
+min_save_epoch: 5

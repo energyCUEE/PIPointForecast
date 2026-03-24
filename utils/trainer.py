@@ -41,6 +41,7 @@ class MGDA_PointPI_Trainer:
     def __init__(
         self,
         wandb_run: Optional[WandbRun],
+        *,
         dbg_mode=False,
         log_step=10,
         accumulation_steps=1,
@@ -51,7 +52,6 @@ class MGDA_PointPI_Trainer:
         num_epochs: int = 2000,
         min_save_epoch: int = 10,
     ):
-        # super().__init__(**kwargs)
 
         self.wandb = wandb_run
         self.dbg_mode = dbg_mode

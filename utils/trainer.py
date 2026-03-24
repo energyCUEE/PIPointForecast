@@ -8,13 +8,12 @@ from loguru import logger
 from omegaconf import DictConfig, OmegaConf
 from sklearn.preprocessing import StandardScaler
 from torch import nn
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Dataset
 from tqdm.auto import tqdm
 from wandb import Run as WandbRun
 
 from utils.dataset import (
     CachedPIRawBatchDataset,
-    ChronosPIDataset,
 )
 from utils.evalmetrics import EvaluationMetrics
 from utils.formulations import PIloss_split, Regressionloss
@@ -89,7 +88,7 @@ class MGDA_PointPI_Trainer:
 
     def _init_dataloaders(
         self,
-        datasets: Dict[Split, ChronosPIDataset] | Literal["cache_piraw"],
+        datasets: Dict[Split, Dataset] | Literal["cache_piraw"],
     ):
         if datasets == "cache_piraw":
             datasets = {
@@ -158,7 +157,7 @@ class MGDA_PointPI_Trainer:
     @logger.catch(message="Error occurred during training.", level="ERROR", reraise=True)
     def training(
         self,
-        datasets: Dict[Split, ChronosPIDataset] | Literal["cache_piraw"],
+        datasets: Dict[Split, Dataset] | Literal["cache_piraw"],
         y_scaler: StandardScaler,
         pi_loss: PIloss_split,
         reg_loss: Regressionloss,
@@ -189,7 +188,7 @@ class MGDA_PointPI_Trainer:
 
         self.metrics = EvaluationMetrics()
         desired_picp = 1 - pi_loss.delta
-        num_steps = datasets["train"].num_ahead
+        num_ahead = datasets["train"].num_ahead
 
         loss_config = {
             pi_loss.__class__: pi_loss.get_config(),
@@ -203,12 +202,12 @@ class MGDA_PointPI_Trainer:
             "num_epochs": self.num_epochs,
             "batch_size": self.batch_size,
             "set_patience": self.set_patience,
-            "num_steps": num_steps,
+            "num_ahead": num_ahead,
         }
 
         best_val_loss = float("inf")
 
-        dev_picp = np.full(num_steps, None)
+        dev_picp = np.full(num_ahead, None)
 
         if self.step != 0 or self.epoch != 0:
             logger.info(f"Resuming training from epoch {self.epoch} and step {self.step}.")

@@ -5,6 +5,10 @@ __pycache__/
 .vscode/
 data/**/*.csv
 data/**/*.pkl
+evaluation/**/*.npy
+evaluation/**/*.npz
+evaluation/**/*.csv
+evaluation/**/*.pkl
 
 # C extensions
 *.so

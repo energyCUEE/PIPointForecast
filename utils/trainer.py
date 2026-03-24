@@ -40,8 +40,8 @@ class MGDA_PointPI_Trainer:
 
     def __init__(
         self,
-        wandb_run: Optional[WandbRun],
         *,
+        wandb_run: Optional[WandbRun] = None,
         dbg_mode=False,
         log_step=10,
         accumulation_steps=1,

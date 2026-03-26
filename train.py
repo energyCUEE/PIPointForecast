@@ -41,7 +41,7 @@ def get_run_string(cfg: DictConfig):
 
 
 @hydra.main(config_path="config", config_name="conf", version_base=None)
-def main(cfg: DictConfig):  # TODO: Add typing to DictConfig later
+def main(cfg: DictConfig):
     data = load_data(cfg.data_path)
 
     set_up, run_name = get_run_string(cfg)  # For logging in WandB
@@ -64,7 +64,7 @@ def main(cfg: DictConfig):  # TODO: Add typing to DictConfig later
     )
 
     # Gradient Accumulation Calculation
-    target_batch_size = 32_768
+    target_batch_size = cfg.run.cached_batch_size
     current_batch_size = cfg.run.batch_size
     accumulation_steps = max(1, target_batch_size // current_batch_size)
     print(

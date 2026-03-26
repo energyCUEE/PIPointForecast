@@ -49,6 +49,8 @@ class MGDA_PointPI_Trainer:
         set_patience: int = 200,
         model_save_path: str = "./save_model",
         model_save_name: str = "forecast-model",
+        batch_size: int = 16,
+        cached_batch_size: int = 16,
         num_epochs: int = 2000,
         min_save_epoch: int = 10,
     ):
@@ -60,6 +62,9 @@ class MGDA_PointPI_Trainer:
         self.log_step = log_step
         self.accumulation_steps = accumulation_steps
         self._num_lag = num_lag  # None = use all cached lag steps
+
+        self.cached_batch_size = cached_batch_size
+        self.batch_size = batch_size
 
         self.set_patience = set_patience
         self.model_save_path = model_save_path
@@ -93,7 +98,7 @@ class MGDA_PointPI_Trainer:
         if datasets == "cache_piraw":
             datasets = {
                 split: CachedPIRawBatchDataset(
-                    cache_dir=f"data/raw/{split}/b32768",
+                    cache_dir=f"data/raw/{split}/b{self.cached_batch_size}",
                     batch_size=self.batch_size,
                     num_lag=self._num_lag,
                     shuffle=(split == "train"),

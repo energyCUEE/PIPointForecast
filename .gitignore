@@ -9,6 +9,8 @@ evaluation/**/*.npy
 evaluation/**/*.npz
 evaluation/**/*.csv
 evaluation/**/*.pkl
+outputs/
+save_model/
 
 # C extensions
 *.so

@@ -4,7 +4,8 @@ dbg_mode: ${debug}
 log_step: ${run.log_step}
 set_patience: 200
 model_save_path: ${model_save_path}
+cached_batch_size: ${run.cached_batch_size}
 batch_size: ${run.batch_size}
 num_lag: ${run.num_lag}
 num_epochs: ${run.max_epochs}
-min_save_epoch: 5
+min_save_epoch: 1

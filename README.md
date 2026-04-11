@@ -1,5 +1,19 @@
 # PI Point Forecast
 
+
+## Model Architectures
+
+### Solar LSTM Net
+<img src="public/solar_lstm_net.png" alt="Solar LSTM Net" width="800"/>
+
+### LSTM Encoder-Decoder
+<img src="public/lstm_encdec.png" alt="LSTM Encoder-Decoder" width="800"/>
+
+### Transformer Encoder-Decoder
+<img src="public/transformer_encdec.png" alt="Transformer Encoder-Decoder" width="800"/>
+
+# Repository Overview
+
 ## Repository Structure
 
 ```text

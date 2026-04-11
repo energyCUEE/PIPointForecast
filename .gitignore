@@ -5,6 +5,7 @@ __pycache__/
 .vscode/
 # data/**/*.csv
 # data/**/*.pkl
+data/**/*.pt
 evaluation/**/*.npy
 evaluation/**/*.npz
 evaluation/**/*.csv

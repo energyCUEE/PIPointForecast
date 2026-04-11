@@ -3,8 +3,8 @@ __pycache__/
 *.py[codz]
 *$py.class
 .vscode/
-data/**/*.csv
-data/**/*.pkl
+# data/**/*.csv
+# data/**/*.pkl
 evaluation/**/*.npy
 evaluation/**/*.npz
 evaluation/**/*.csv

@@ -1,16 +1,37 @@
 # PI Point Forecast
 
+This GitHub repository contains the code and resources for the paper "Barrier-enforced multi-objective optimization for direct point and sharpinterval forecasting". 
+
+## Abstract
+This paper proposes a multi-step probabilistic forecasting framework using a single neural-network based modelto generate simultaneous point and interval forecasts. Our approach ensures non-crossing prediction intervals (PIs) through a model structure design that strictly satisfy a target coverage probability (PICP) while maximizing sharp-ness. Unlike existing methods that rely on manual weight tuning for scalarized loss functions, we treat point andPI forecasting as a multi-objective optimization problem, utilizing multi-gradient descent to adaptively select optimalweights. Key innovations include a new PI loss function based on an extended log-barrier with an adaptive hyperpa-rameter to guarantee the coverage, and a hybrid architecture featuring a shared temporal model with horizon-specificsubmodels. The proposed loss is scale-independent and universally applicable; combined with our training strategy, theframework eliminates trial-and-error hyperparameter tuning for balancing multiple objectives. Validated by an intra-day solar irradiance forecasting application, results demonstrate that our proposed loss consistently outperforms thosein current literature by achieving target coverage with the narrowest PI widths. Furthermore, when compared againstLSTM encoder-decoder and Transformer architectures–including those augmented with Chronos foundation models–ourmethod remains highly competitive and can be seamlessly adapted to any deep learning structure.
 
 ## Model Architectures
 
-### Solar LSTM Net
-<img src="public/solar_lstm_net.png" alt="Solar LSTM Net" width="800"/>
+### Solar Point PI
+<img src="public/solar_pointpi.png" alt="Solar Point PI" width="800"/>
 
 ### LSTM Encoder-Decoder
 <img src="public/lstm_encdec.png" alt="LSTM Encoder-Decoder" width="800"/>
 
-### Transformer Encoder-Decoder
-<img src="public/transformer_encdec.png" alt="Transformer Encoder-Decoder" width="800"/>
+### Transformer
+<img src="public/transformer.png" alt="Transformer" width="800"/>
+
+
+## Results
+
+
+### Solar irradiance forecasts (W/sqm) comparing model architectures horizons.
+
+<img src="public/ts_results.png" alt="Forecasting Results" width="800"/>
+
+### Solar irradiance forecasts (W/sqm) comparing loss functions horizons.
+<img src="public/ts_obj_15min.png" alt="15-minute Forecasting Results" width="800"/>
+<img src="public/ts_obj_4hr.png" alt="4-hour Forecasting Results" width="800"/>
+
+
+
+
+---
 
 # Repository Overview
 
